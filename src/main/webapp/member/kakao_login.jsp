@@ -7,7 +7,7 @@
 <title>카카오 로그인</title>
 </head>
 <body>
-    <a href="javascript:kakaoLogin();"><img src="${pageContext.request.contextPath}/resource/imgkakao_login_large_wide.png" style='height: 60px;'/></a>
+    <a href="javascript:kakaoLogin();"><img src="${pageContext.request.contextPath}/resources/img/kakao_login_large_wide.png"/></a>
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
@@ -29,22 +29,16 @@
                             form.setAttribute('action', 'socialinsert'); // 전송할 url 지정
                             
                             let social = document.createElement('input'); //<input>
-                            social.setAttribute('name', 'email')
-                            social.setAttribute('value', kakao_account.email)
+                            social.setAttribute('name', 'id');
+                            social.setAttribute('value', kakao_account.email);
                             
-
                             let social2 = document.createElement('input');
-                            social2.setAttribute('name','member_id');
-                            social2.setAttribute('value',kakao_account.email);
-                            
-                            let social3 = document.createElement('input');
-                            social3.setAttribute('name','type');
-                            social3.setAttribute('value','kakao');
+                            social2.setAttribute('name','type');
+                            social2.setAttribute('value','kakao');
                             
                             
                             form.appendChild(social);
                             form.appendChild(social2);
-                            form.appendChild(social3);
                             
                             document.body.appendChild(form);
                             form.submit();

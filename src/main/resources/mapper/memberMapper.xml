@@ -1,18 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-    
 
-    
-    <select id="select" parameterType="memberVO" resultType="memberVO">
-        SELECT * FROM member WHERE member_id = #{member_id} AND pw = #{pw}
-    </select>
-    
-    <select id="count" parameterType="memberVO" resultType="int">
-        SELECT count(*) FROM member WHERE member_id = #{member_id} AND pw = #{pw}
-    </select>
-    
-    <insert id="insert" parameterType="memberVO">
+	<select id="one" parameterType="String" resultType="memberVO">
+		SELECT
+		member_id, pw, name, tel, email, nickname FROM member WHERE
+		member_id = #{member_id}
+	</select>
+
+	<select id="count" parameterType="memberVO" resultType="int">
+		SELECT
+		count(*) FROM member WHERE member_id = #{member_id} AND pw = #{pw}
+	</select>
+
+	<update id="nameupdate" parameterType="memberVO">
+		UPDATE member SET name =
+		#{name} WHERE member_id = #{member_id}
+	</update>
+
+	<update id="nicknameupdate" parameterType="memberVO">
+		UPDATE member SET
+		nickname = #{nickname} WHERE member_id = #{member_id}
+	</update>
+
+	<update id="emailupdate" parameterType="memberVO">
+		UPDATE member SET email =
+		#{email} WHERE member_id = #{member_id}
+	</update>
+
+	<update id="telupdate" parameterType="memberVO">
+		UPDATE member SET tel =
+		#{tel} WHERE member_id = #{member_id}
+	</update>
+
+	<update id="pwupdate" parameterType="memberVO">
+		UPDATE member SET pw = #{pw}
+		WHERE member_id = #{member_id}
+	</update>
+
+	<delete id="delete" parameterType="memberVO">
+		DELETE FROM member WHERE
+		member_id = #{member_id}
+	</delete>
+
+	<insert id="insert" parameterType="memberVO">
 		insert into member
 		values (
 		#{member_id},
@@ -24,23 +55,38 @@
 		#{type}
 		)
 	</insert>
-	
-	<!-- 아이디 중복 확인하기  -->
-	<select id="idConfirm" parameterType="memberVO" resultType="String">
+
+	<!-- 아이디 중복 확인하기 -->
+	<select id="idConfirm" parameterType="memberVO"
+		resultType="String">
 		SELECT member_id FROM member WHERE member_id = #{member_id}
 	</select>
-	
+
 	<!-- 닉네임 중복 확인하기 -->
-	<select id="nicknameConfirm" parameterType="memberVO" resultType="String">
+	<select id="nicknameConfirm" parameterType="memberVO"
+		resultType="String">
 		SELECT nickname FROM member WHERE nickname = #{nickname}
 	</select>
-	
+
 	<!-- 이메일 중복 확인하기 -->
 	<select id="email" parameterType="memberVO" resultType="String">
-		SELECT email FROM member WHERE email = #{email}
+		SELECT
+		email FROM member WHERE email = #{email}
 	</select>
-	
-	
+
+	<!-- 비밀번호 검사 확인하기 -->
+	<select id="pwConfirm" parameterType="memberVO"
+		resultType="String">
+		SELECT
+		pw FROM member WHERE pw = #{pw} and member_id =
+		#{member_id}
+	</select>
+
+	<!-- 내 게시글 조회 -->
+	<select id="myreviewlist" parameterType="String"
+		resultType="reviewVO">
+		select * from review_board where r_writer =#{member_id}
+	</select>
 
 </mapper>
 

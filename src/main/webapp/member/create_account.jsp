@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+ 
 <!DOCTYPE html>
 <html>
 <head>
+<!-- jquery -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>타요타요 회원가입</title>
 
 <style type="text/css">
 html {
@@ -32,15 +38,6 @@ body {
     position: relative;
     height: 100%;
 }
-
-#content {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    width: 460px;
-}
-
-
 
 
 /* 입력폼 */
@@ -189,29 +186,44 @@ select {
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
+
+section {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 460px;
+
+}
+
 </style>
 </head>
 <body>
 
         <!-- header -->
         <div id="header">
-            <label for="id">회원가입</label>
+            <label  style="font-size:30px">회원가입</label>
         </div>
 
-
+	
         <!-- wrapper -->
         <div id="wrapper">
 
-            <!-- content-->
-            <div id="content">
-
+            <!-- section -->
+            <section>
+				<form action="insert" method="post" accept-charset="utf-8">
                 <!-- ID -->
                 <div>
                     <h3 class="join_title">
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20" name="member_id">
+                        <input type="text" id="id" class="int" maxlength="20" name="member_id" required>
                         <span class="step_url">@tayotayo.com</span>
                     </span>
                     <span class="error_next_box"></span>
@@ -221,9 +233,9 @@ select {
                 <div>
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="text" id="pswd1" class="int" maxlength="20" name="m_pw">
+                        <input type="password" id="pswd1" class="int" maxlength="20" name="pw" required>
                         <span id="alertTxt">사용불가</span>
-                        <img src="img/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
+                        <img src="${pageContext.request.contextPath}/resources/img/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -232,8 +244,8 @@ select {
                 <div>
                     <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                     <span class="box int_pass_check">
-                        <input type="text" id="pswd2" class="int" maxlength="20">
-                        <img src="img/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
+                        <input type="password" id="pswd2" class="int" maxlength="20" required>
+                        <img src="${pageContext.request.contextPath}/resources/img/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -242,53 +254,55 @@ select {
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="name" class="int" maxlength="20" name="m_name">
+                        <input type="text" id="name" class="int" maxlength="20" name="name" required>
                     </span>
-                    <span class="img/error_next_box"></span>
+                    <span class="error_next_box"></span>
                 </div>
 
                 <!-- NICKNAME -->
                 <div>
                     <h3 class="join_title"><label for="name">닉네임</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="name" class="int" maxlength="20" name="m_nickname">
+                        <input type="text" id="nickname" class="int" maxlength="20" name="nickname" required>
                     </span>
-                    <span class="img/error_next_box"></span>
+                    <span class="error_next_box"></span>
                 </div>
                 
                 <!-- MOBILE -->
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" name="m_tel">
+                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" name="tel" required>
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
 
                 <!-- EMAIL -->
                 <div>
-                    <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3>
+                    <h3 class="join_title"><label for="email">본인확인 이메일</label></h3>
                     <span class="box int_email">
-                        <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력">
+                        <input type="text" id="email" class="int" maxlength="100" placeholder="필수입력" name="email" required>
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
                 </div>
 
+ 				<input type="hidden" id="type" name="type" value="tayotayo">
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <button type="button" id="btnJoin">
+                    <button type="submit" id="btnJoin">
                         <span>가입하기</span>
                     </button>
                 </div>
 
                 
-
-            </div> 
-            <!-- content-->
+				</form>
+   </section> 
+            <!-- section -->
 
         </div> 
+     
         <!-- wrapper -->
-    <script src="main.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
     </body>
 </html>

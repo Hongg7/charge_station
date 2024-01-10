@@ -7,7 +7,6 @@ public class MemberVO {
 	private String tel;
 	private String email;
 	private String nickname;
-	private String type;
 	
 	public String getMember_id() {
 		return member_id;
@@ -45,13 +44,12 @@ public class MemberVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
+	
+	@Override
+	public String toString() {
+		return "MemberVO [member_id=" + member_id + ", pw=" + pw + ", name=" + name + ", tel=" + tel + ", email="
+				+ email + ", nickname=" + nickname + "]";
 	}
 
-	
 	
 }

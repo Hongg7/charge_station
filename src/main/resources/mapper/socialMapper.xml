@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="social">
-	
-	<!-- 아이디 중복 확인하기  -->
-	<select id="idConfirm" parameterType="memberVO" resultType="String">
-		SELECT member_id FROM member WHERE member_id = #{member_id} and type= #{type}
-	</select>
-	
-	<!-- 닉네임 중복 확인하기 -->
-	<select id="nicknameConfirm" parameterType="memberVO" resultType="String">
-		SELECT nickname FROM member WHERE nickname = #{nickname}
-	</select>
-	
-	<!-- 이메일 중복 확인하기 -->
-	<select id="email" parameterType="memberVO" resultType="String">
-		SELECT email FROM member WHERE email = #{email}
-	</select>
-	
-	
 
+	<!-- 소셜 아이디 중복 확인하기 -->
+	<select id="idConfirm" parameterType="socialVO"
+		resultType="String">
+		SELECT id FROM social WHERE id = #{id} and type= #{type}
+	</select>
+
+	<insert id="insert" parameterType="socialVO">
+		insert into social(id, type) values (#{id}, #{type});
+	</insert>
+
+	<select id="member_id_select" parameterType="socialVO"
+		resultType="String">
+		SELECT member_id FROM social WHERE id = #{id}
+	</select>
+	
+	<update id="member_id_update" parameterType="socialVO">
+		UPDATE social SET member_id = #{member_id} WHERE id = #{id}
+	</update>
 </mapper>

@@ -16,14 +16,19 @@
 	<div id="naver_id_login"></div>
 	<!-- //네이버 로그인 버튼 노출 영역 -->
 	<script type="text/javascript">
-		var naver_id_login = new naver_id_login("OrBv0eSYId4RE2chxvPo",
+		var naver_id_login = new 
+		naver_id_login("OrBv0eSYId4RE2chxvPo",
 				"http://localhost:9999/tayotayo/member/naver_callback.jsp");
 		var state = naver_id_login.getUniqState();
-		naver_id_login.setButton("green", 3, 40);
+		naver_id_login.setButton("green", 3, 50);
 		naver_id_login
 				.setDomain("http://localhost:9999/tayotayo/member/naver_login.jsp");
 		//naver_id_login.setState(state);
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
+		
+		function fn_reload(){
+			location.href = "/tayotayo/mainpage/MainPage.jsp";	
+		}
 	</script>
 </html>

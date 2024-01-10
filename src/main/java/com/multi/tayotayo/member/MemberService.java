@@ -21,6 +21,30 @@ public class MemberService {
 		dao.insert(memberVO);
 	}
 	
+	public void nameupdate(MemberVO memberVO) {
+		dao.nameupdate(memberVO);
+	}
+	
+	public void nicknameupdate(MemberVO memberVO) {
+		dao.nicknameupdate(memberVO);
+	}
+	
+	public void emailupdate(MemberVO memberVO) {
+		dao.emailupdate(memberVO);
+	}
+	
+	public void telupdate(MemberVO memberVO) {
+		dao.telupdate(memberVO);
+	}
+	
+	public void pwupdate(MemberVO memberVO) {
+		dao.pwupdate(memberVO);
+	}
+	
+	public void delete(MemberVO memberVO) {
+		dao.delete(memberVO);
+	}
+	
 	public void idConfirm(String member_id, HttpServletResponse response) throws IOException {
 
 		if(dao.idConfirm(member_id) == null) {
@@ -43,4 +67,15 @@ public class MemberService {
 		}
 		
 	}
+
+	public int pwConfirm(MemberVO memberVO) {
+		if(dao.pwConfirm(memberVO) == null) { //잘못된 비밀번호
+			return 0;
+		}else {
+			return 1; //잘 입력된 비밀번호
+		}
+		
+	}
+	
+	
 }

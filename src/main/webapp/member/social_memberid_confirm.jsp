@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>타요타요 로그인</title>
 
 <style type="text/css">
 	:root {
@@ -239,20 +234,17 @@ img {
 }
 
 </style>
+
 </head>
-
 <body>
-
-
-
 <main class="main">
   <div class="container">
     <section class="wrapper">
       <div class="heading">
-        <h1 class="text text-large">Login</h1>
+        <h1 class="text text-large">타요타요 계정연동<br> 로그인</h1>
       </div>
       
-      <form action="login" method="post" name="signin" class="form">
+      <form action="socialinsert" method="post" name="signin" class="form">
         <div class="input-control">
           <label for="id" class="input-label" hidden>ID</label>
           <input type="text"  id="member_id" class="input-field" name="member_id" placeholder="ID" required>
@@ -264,27 +256,14 @@ img {
         <div class="input-control">
           <a href="#" class="text text-links">ID/PW 찾기</a>
           <a href="create_account.jsp" class="text text-links">회원가입</a>
-          <input type="submit" name="submit" class="input-submit" value="Sign In">
+          
+           <input type="hidden"  id="social_id" class="input-field" name="id" >
+           <input type="hidden"  id="social_type" class="input-field" name="type" value="naver">
+          
+          <input type="submit" name="submit" class="input-submit" value="계정연동">
         </div>
         
       </form>
-      
-      <div class="striped">
-        <span class="striped-line"></span>
-        <span class="striped-text">Or</span>
-        <span class="striped-line"></span>
-      </div>
-      <div class="method">
-        <%@ include file="naver_login.jsp" %><br>
-
-		<%@ include file="kakao_login.jsp" %><br>
-
-        <%@ include file="google_login.jsp" %><br>
-
-      </div>
     </section>
   </div>
 </main>
-
-</body>
-</html>
